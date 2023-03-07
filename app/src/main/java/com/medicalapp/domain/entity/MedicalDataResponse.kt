@@ -24,9 +24,9 @@ data class MedicalDataResponse(
             )
 
             data class Medication(
-                val medicationsClasses: List<MedicationsClasse>
+                val medicationsClasses: List<MedicationsClass>
             ) {
-                data class MedicationsClasse(
+                data class MedicationsClass(
                     val className: List<ClassName>,
                     val className2: List<ClassName>
                 ) {
