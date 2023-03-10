@@ -5,5 +5,6 @@
     <string name="login">Login</string>
     <string name="prescription">Prescription</string>
     <string name="welcome">Welcome</string>
-    <string name="today_is">Today is</string>
+    <string name="today_is">Today is </string>
+    <string name="name_validation">Please enter a user name</string>
 </resources>

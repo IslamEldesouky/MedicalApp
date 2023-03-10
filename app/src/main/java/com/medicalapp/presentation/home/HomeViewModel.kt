@@ -9,22 +9,32 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val getMedicalDataUseCase: GetMedicalDataUseCase) : ViewModel() {
 
-    private val _medicalData : MutableStateFlow<MedicalDataResponse?> = MutableStateFlow(null)
-    val medicalData : StateFlow<MedicalDataResponse?> = _medicalData
-
-    fun getCurrentWeatherData(){
-        viewModelScope.launch{
+    private val _medicalData: MutableStateFlow<MedicalDataResponse?> = MutableStateFlow(null)
+    val medicalData: StateFlow<MedicalDataResponse?> = _medicalData
+    var userName:String = ""
+    fun getCurrentWeatherData() {
+        viewModelScope.launch {
             try {
-                Log.d("MEDICAL","HELLO")
+                Log.d("MEDICAL", "HELLO")
                 _medicalData.value = getMedicalDataUseCase.getMedicalData()
-            }catch (e:java.lang.Exception){
-                Log.e("ERROR",e.message.toString())
+            } catch (e: java.lang.Exception) {
+                Log.e("ERROR", e.message.toString())
             }
         }
+    }
+
+    fun getCurrentDate(): String? {
+        val formatter = SimpleDateFormat("dd MMM yyyy")
+        val date = Date()
+        val current = formatter.format(date)
+        return current
     }
 }

@@ -1,9 +1,12 @@
 package com.medicalapp.presentation.login
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.medicalapp.R
@@ -30,6 +33,14 @@ class LoginFragment : Fragment(), LoginHandler {
     }
 
     override fun loginButtonClicked() {
-        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        if (!TextUtils.isEmpty(binding.idEdtUserName.text)) {
+            val bundle = bundleOf("username" to binding.idEdtUserName.text.toString())
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment, bundle)
+        } else
+            Toast.makeText(
+                this@LoginFragment.context,
+                getString(R.string.name_validation),
+                Toast.LENGTH_LONG
+            ).show()
     }
 }
