@@ -7,4 +7,6 @@
     <string name="welcome">Welcome</string>
     <string name="today_is">Today is </string>
     <string name="name_validation">Please enter a user name</string>
+    <string name="log_out">Log out</string>
+    <string name="no_data_found">No data found</string>
 </resources>

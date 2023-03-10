@@ -13,7 +13,7 @@ data class MedicalDataResponse(
     val problems: List<Problem> ,
     @PrimaryKey(autoGenerate = true)
     val id : Int
-) {
+)  {
     data class Problem(
         @SerializedName("Asthma")
         val asthma: List<Asthma>,

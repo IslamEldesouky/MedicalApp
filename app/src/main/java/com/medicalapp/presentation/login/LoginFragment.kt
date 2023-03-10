@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import com.medicalapp.R
 import com.medicalapp.databinding.FragmentLoginBinding
@@ -36,6 +37,7 @@ class LoginFragment : Fragment(), LoginHandler {
         if (!TextUtils.isEmpty(binding.idEdtUserName.text)) {
             val bundle = bundleOf("username" to binding.idEdtUserName.text.toString())
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment, bundle)
+
         } else
             Toast.makeText(
                 this@LoginFragment.context,

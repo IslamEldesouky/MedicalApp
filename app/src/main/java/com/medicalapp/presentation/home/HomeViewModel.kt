@@ -20,7 +20,7 @@ class HomeViewModel @Inject constructor(private val getMedicalDataUseCase: GetMe
     private val _medicalData: MutableStateFlow<MedicalDataResponse?> = MutableStateFlow(null)
     val medicalData: StateFlow<MedicalDataResponse?> = _medicalData
     var userName:String = ""
-    fun getCurrentWeatherData() {
+    fun getData() {
         viewModelScope.launch {
             try {
                 Log.d("MEDICAL", "HELLO")
