@@ -10,7 +10,7 @@ import com.medicalapp.data.local.DBConfig.Constants.MEDICAL_TABLE_NAME
 @Entity(tableName = MEDICAL_TABLE_NAME)
 data class MedicalDataResponse(
     @field:TypeConverters(Converters::class)
-    val problems: List<Problem> ,
+    var problems: List<Problem> ,
     @PrimaryKey(autoGenerate = true)
     val id : Int
 )  {
@@ -18,27 +18,27 @@ data class MedicalDataResponse(
         @SerializedName("Asthma")
         val asthma: List<Asthma>,
         @SerializedName("Diabetes")
-        val diabetes: List<Diabetes>
+        var diabetes: List<Diabetes>
 
     ) {
         data class Diabetes(
             val labs: List<Lab>,
-            val medications: List<Medication>
+            var medications: List<Medication>
         ) {
             data class Lab(
                 val missingField: String
             )
 
             data class Medication(
-                val medicationsClasses: List<MedicationsClass>
+                var medicationsClasses: List<MedicationsClass>
             ) {
                 data class MedicationsClass(
-                    val className: List<ClassName>,
+                    var className: List<ClassName>,
                     val className2: List<ClassName>
                 ) {
                     data class ClassName(
                         val id: Int,
-                        val associatedDrug: List<AssociatedDrug>,
+                        var associatedDrug: List<AssociatedDrug>,
                         @SerializedName("associatedDrug#2")
                         val associatedDrug2: List<AssociatedDrug>
                     ) {
