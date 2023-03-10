@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 import java.util.*
 import javax.inject.Inject
 
@@ -19,7 +18,8 @@ class HomeViewModel @Inject constructor(private val getMedicalDataUseCase: GetMe
 
     private val _medicalData: MutableStateFlow<MedicalDataResponse?> = MutableStateFlow(null)
     val medicalData: StateFlow<MedicalDataResponse?> = _medicalData
-    var userName:String = ""
+    var userName: String = ""
+
     fun getData() {
         viewModelScope.launch {
             try {

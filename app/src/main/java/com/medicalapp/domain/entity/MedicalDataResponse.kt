@@ -10,43 +10,43 @@ import com.medicalapp.data.local.DBConfig.Constants.MEDICAL_TABLE_NAME
 @Entity(tableName = MEDICAL_TABLE_NAME)
 data class MedicalDataResponse(
     @field:TypeConverters(Converters::class)
-    var problems: List<Problem> ,
+    val problems: List<Problem>,
     @PrimaryKey(autoGenerate = true)
-    val id : Int
+    val id: Int
 )  {
     data class Problem(
         @SerializedName("Asthma")
         val asthma: List<Asthma>,
         @SerializedName("Diabetes")
-        var diabetes: List<Diabetes>
+        val diabetes: List<Diabetes>
 
     ) {
         data class Diabetes(
             val labs: List<Lab>,
-            var medications: List<Medication>
+            val medications: List<Medication>
         ) {
             data class Lab(
                 val missingField: String
             )
 
             data class Medication(
-                var medicationsClasses: List<MedicationsClass>
+                val medicationsClasses: List<MedicationsClass>
             ) {
                 data class MedicationsClass(
-                    var className: List<ClassName>,
+                    val className: List<ClassName>,
                     val className2: List<ClassName>
                 ) {
                     data class ClassName(
                         val id: Int,
-                        var associatedDrug: List<AssociatedDrug>,
+                        val associatedDrug: List<AssociatedDrug>,
                         @SerializedName("associatedDrug#2")
                         val associatedDrug2: List<AssociatedDrug>
                     ) {
                         data class AssociatedDrug(
                             val id: Int,
-                            var dose: String,
-                            var name: String,
-                            var strength: String
+                            val dose: String,
+                            val name: String,
+                            val strength: String
                         )
                     }
                 }

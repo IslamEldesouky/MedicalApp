@@ -2,11 +2,9 @@ package com.medicalapp.presentation.home
 
 import PrescriptionAdapter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,7 +22,9 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment(), PrescriptionAdapter.ItemSelected, HomeHandler {
 
     private val viewModel: HomeViewModel by viewModels()
-    lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var adapter: PrescriptionAdapter
+    private lateinit var rvPrescription : RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,19 +40,12 @@ class HomeFragment : Fragment(), PrescriptionAdapter.ItemSelected, HomeHandler {
 
         binding.viewModel = viewModel
         binding.handler = this
-        viewModel.getData()
-        binding.progressBar.visibility = View.VISIBLE
-        binding.empty.visibility = View.GONE
-        val prescriptionAdapter = PrescriptionAdapter(this)
-        val rvDrug: RecyclerView = binding.parentRecyclerview
-        val linearLayoutManager = LinearLayoutManager(this@HomeFragment.context)
-        rvDrug.layoutManager = linearLayoutManager
-
         val username = arguments?.getString("username")
         if (username != null) {
             viewModel.userName = username
         }
-
+        initView()
+        viewModel.getData()
         lifecycleScope.launch() {
             binding.empty.visibility = View.GONE
             viewModel.medicalData.collect() {
@@ -61,15 +54,23 @@ class HomeFragment : Fragment(), PrescriptionAdapter.ItemSelected, HomeHandler {
                 } else {
                     binding.progressBar.visibility = View.GONE
                     binding.empty.visibility = View.GONE
-                    prescriptionAdapter.submitList(
+                    adapter.submitList(
                         it.problems.get(0).diabetes.get(0).medications.get(0).medicationsClasses.get(0).className
                     )
-                    rvDrug.adapter = prescriptionAdapter
+                    rvPrescription.adapter = adapter
                 }
             }
         }
     }
 
+    fun initView(){
+        binding.progressBar.visibility = View.VISIBLE
+        binding.empty.visibility = View.GONE
+        adapter = PrescriptionAdapter(this)
+        rvPrescription = binding.parentRecyclerview
+        val linearLayoutManager = LinearLayoutManager(this@HomeFragment.context)
+        rvPrescription.layoutManager = linearLayoutManager
+    }
     override fun itemSelected(searchItem: MedicalDataResponse.Problem.Diabetes.Medication.MedicationsClass.ClassName) {}
 
     override fun drugSelected(drugItem: MedicalDataResponse.Problem.Diabetes.Medication.MedicationsClass.ClassName.AssociatedDrug) {

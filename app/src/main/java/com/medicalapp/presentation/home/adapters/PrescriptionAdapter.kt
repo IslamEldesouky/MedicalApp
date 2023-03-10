@@ -1,12 +1,9 @@
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.medicalapp.R
-import com.medicalapp.databinding.DrugItemBinding
 import com.medicalapp.databinding.PrescriptionItemBinding
 import com.medicalapp.domain.entity.MedicalDataResponse
 

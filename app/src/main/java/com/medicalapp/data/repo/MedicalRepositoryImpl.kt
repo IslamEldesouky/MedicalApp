@@ -41,5 +41,4 @@ class MedicalRepositoryImpl(
         }
         return medicalDataResponse
     }
-
 }

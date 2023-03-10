@@ -9,7 +9,8 @@ import com.medicalapp.databinding.FragmentHomeDetailsBinding
 
 class HomeDetailsFragment : Fragment() {
 
-    lateinit var binding: FragmentHomeDetailsBinding
+    private lateinit var binding: FragmentHomeDetailsBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
