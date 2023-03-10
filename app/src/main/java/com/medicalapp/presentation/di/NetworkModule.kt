@@ -1,3 +1,4 @@
+package com.medicalapp.presentation.di
 
 import com.medicalapp.data.remote.APIConfig
 import com.medicalapp.data.remote.APIService

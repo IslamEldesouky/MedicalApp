@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MedicalApp</string>
+    <string name="medical">MedicalApp</string>
+    <string name="enter_username">Enter UserName</string>
+    <string name="login">Login</string>
+    <string name="prescription">Prescription</string>
+    <string name="welcome">Welcome</string>
+    <string name="today_is">Today is</string>
 </resources>
