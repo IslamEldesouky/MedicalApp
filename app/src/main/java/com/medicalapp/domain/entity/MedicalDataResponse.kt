@@ -44,9 +44,9 @@ data class MedicalDataResponse(
                     ) {
                         data class AssociatedDrug(
                             val id: Int,
-                            val dose: String,
-                            val name: String,
-                            val strength: String
+                            var dose: String,
+                            var name: String,
+                            var strength: String
                         )
                     }
                 }
